@@ -5,20 +5,23 @@ void main() {
 }
 
 class ProfilePageApp extends StatelessWidget {
+  // Constructor for ProfilePageApp
   const ProfilePageApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // Defines the home screen of the app as ProfilePage
       home: ProfilePage(),
       theme: ThemeData(
+        // Custom theme definition for the app
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.blue,
         ).copyWith(
-          secondary: Colors.blueGrey[300],
-          surface: Colors.white,
-          primaryContainer: Colors.blueAccent,
-          onPrimary: Colors.white,
+          secondary: Colors.blueGrey[300], // Light secondary color
+          surface: Colors.white, // Background color for surfaces
+          primaryContainer: Colors.blueAccent, // Container primary color
+          onPrimary: Colors.white, // Text color on primary color
         ),
         textTheme: TextTheme(
           bodyLarge: TextStyle(color: Colors.grey[700]),
@@ -36,19 +39,20 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
+      backgroundColor:
+          Theme.of(context).colorScheme.surface, // Sets background color
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0), // Padding around the content
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HeaderSection(),
+            HeaderSection(), // Profile header with avatar and name
             const SizedBox(height: 16.0),
-            AboutSection(),
+            AboutSection(), // About section text
             const SizedBox(height: 16.0),
-            SkillsSection(),
+            SkillsSection(), // Section displaying skills
             const SizedBox(height: 16.0),
-            EducationSection(),
+            EducationSection(), // Education details
           ],
         ),
       ),
@@ -56,6 +60,7 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
+// Header section with user's image, name, position, and location
 class HeaderSection extends StatelessWidget {
   const HeaderSection({super.key});
 
@@ -65,34 +70,37 @@ class HeaderSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CircleAvatar(
-          radius: 40,
-          backgroundImage: AssetImage('lib/assets/RavinduWickramage.jpg'),
-          onBackgroundImageError: (exception, stackTrace) {},
+          radius: 40, // Set the radius of the avatar
+          backgroundImage:
+              AssetImage('lib/assets/RavinduWickramage.jpg'), // Profile picture
+          onBackgroundImageError:
+              (exception, stackTrace) {}, // Handle error in image loading
         ),
-        const SizedBox(width: 16.0),
+        const SizedBox(width: 16.0), // Space between avatar and text
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Ravindu Wickramage",
+              "Ravindu Wickramage", // Name of the person
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 0, 34, 94),
+                color: Color.fromARGB(255, 0, 34, 94), // Custom name color
               ),
             ),
             Text(
-              "Intern Software Engineer",
+              "Intern Software Engineer", // Job title
               style: TextStyle(
                 fontSize: 16,
-                color: const Color.fromARGB(255, 2, 0, 150),
+                color: const Color.fromARGB(255, 2, 0, 150), // Job title color
               ),
             ),
             Text(
-              "Ganemulla, Sri Lanka",
+              "Ganemulla, Sri Lanka", 
               style: TextStyle(
                 fontSize: 14,
-                color: const Color.fromARGB(255, 150, 150, 150),
+                color:
+                    const Color.fromARGB(255, 150, 150, 150), // Location color
               ),
             ),
           ],
@@ -102,6 +110,7 @@ class HeaderSection extends StatelessWidget {
   }
 }
 
+// About section with a brief description and current position
 class AboutSection extends StatelessWidget {
   const AboutSection({super.key});
 
@@ -127,7 +136,7 @@ class AboutSection extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 1.0, 0.0, 1.0),
           child: Text(
-            "Current Position: Software Developer, ABC Corp",
+            "Current Position: Software Developer, ABC Corp", // Current role
             style: TextStyle(
                 fontSize: 15, color: const Color.fromARGB(255, 50, 50, 50)),
           ),
@@ -137,6 +146,7 @@ class AboutSection extends StatelessWidget {
   }
 }
 
+// Skills section, divided into two columns with skill proficiency
 class SkillsSection extends StatelessWidget {
   final List<Skill> skills = [
     Skill("Java", 0.9),
@@ -173,6 +183,7 @@ class SkillsSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              // Left column for skills
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(right: 8.0),
@@ -184,6 +195,7 @@ class SkillsSection extends StatelessWidget {
                   ),
                 ),
               ),
+              // Right column for skills
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8.0),
@@ -203,6 +215,7 @@ class SkillsSection extends StatelessWidget {
   }
 }
 
+// Skill proficiency indicator with a LinearProgressIndicator
 class SkillIndicator extends StatelessWidget {
   final Skill skill;
 
@@ -222,7 +235,7 @@ class SkillIndicator extends StatelessWidget {
                 style: TextStyle(fontSize: 14, color: Colors.grey[700]),
               ),
               Text(
-                "${(skill.proficiency * 100).toInt()}%",
+                "${(skill.proficiency * 100).toInt()}%", // Display proficiency percentage
                 style: TextStyle(fontSize: 14, color: Colors.grey[700]),
               ),
             ],
@@ -232,7 +245,7 @@ class SkillIndicator extends StatelessWidget {
             value: skill.proficiency,
             backgroundColor: Colors.grey[300],
             color: Theme.of(context).colorScheme.primary,
-            minHeight: 8.0,
+            minHeight: 8.0, // Minimum height for the progress bar
           ),
         ],
       ),
@@ -240,6 +253,7 @@ class SkillIndicator extends StatelessWidget {
   }
 }
 
+// Education section with degree details
 class EducationSection extends StatelessWidget {
   const EducationSection({super.key});
 
@@ -260,6 +274,7 @@ class EducationSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            // Education 1
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -275,6 +290,7 @@ class EducationSection extends StatelessWidget {
                 ],
               ),
             ),
+            // Education 2
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -293,12 +309,13 @@ class EducationSection extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16.0),
-        Divider(),
+        Divider(), // Divider for section separation
       ],
     );
   }
 }
 
+// Skill class to store skill name and proficiency level
 class Skill {
   final String name;
   final double proficiency;
